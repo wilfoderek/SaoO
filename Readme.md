@@ -1,41 +1,32 @@
-## Overview
+# StandAlone OnlyOffice (SAOO)
 
-ONLYOFFICE Document Server is a free collaborative online office suite comprising viewers and editors for texts, spreadsheets and presentations, fully compatible with Office Open XML formats: .docx, .xlsx, .pptx and enabling collaborative editing in real time.
+This fork of [OnlyOffice's DocumentServer](https://github.com/ONLYOFFICE/DocumentServer) is an
+attempt to create a purely NodeJS-based online editor for Office documents with the fidelity
+or OnlyOffice.
 
-## Functionality
+Thus far, it is a recipe to port a standalone editor for spreadsheets based on a running
+instance of the OnlyOffice installed over Docker and on the source of OnlyOffice.
 
-* ONLYOFFICE Document Editor
-* ONLYOFFICE Spreadsheet Editor
-* ONLYOFFICE Presentation Editor
-* Collaborative editing
-* Hieroglyph support
+Progressively, the source will be more used and the running instance will not be used anymore.
 
-## Project Information
+## How to Install
 
-Official website: [http://www.onlyoffice.org](http://onlyoffice.org "http://www.onlyoffice.org")
+* Install [nginx](http://nginx.com)
+* Install [NodeJS](http://nodejs.org/)
+* Install [MySQL](http://mysql.org/)
+* Checkout this project (e.g. download zip or git clone)
+* Create a MySQL database and run `deploy/Schema/MySql.CreateDb.sql` on it and add user-name
+  and passwords on `deploy/CoAuthoringService/CoAuthoring/sources/config.json`
+* Adapt and install `onlyoffice-nginx.conf` (especially the path to the static directory)
+* From the home directory invoke `xbuild OnlineEditorsExample/OnlineEditorsExample.csproj`
+* In one shell, invoke `node ./deploy/CoAuthoringService/CoAuthoring/sources/server.js`
+* In another shell, invoke `node mimick/app.js`
+* Direct your browser to [`http://localhost/docEditorAttempt.html`](http://127.0.0.1/docEditorAttempt.html)
 
-Code repository: [https://github.com/ONLYOFFICE/DocumentServer](https://github.com/ONLYOFFICE/DocumentServer "https://github.com/ONLYOFFICE/DocumentServer")
+## Areas of investigations
 
-Docker Image: [https://github.com/ONLYOFFICE/Docker-DocumentServer](https://github.com/ONLYOFFICE/Docker-DocumentServer "https://github.com/ONLYOFFICE/Docker-DocumentServer")
+* Something that produces `Editor.bin` ? (seems open as per [this thread](http://dev.onlyoffice.org/viewtopic.php?f=44&t=6859)).
+  Investigations thus far seem to show me that the file is almost produced through proprietary code.
+* Something that produces fonts? Currently this is a breaking case.
+* A complete build system
 
-License: [GNU AGPL v3.0](https://help.onlyoffice.com/products/files/doceditor.aspx?fileid=4358397&doc=K0ZUdlVuQzQ0RFhhMzhZRVN4ZFIvaHlhUjN2eS9XMXpKR1M5WEppUk1Gcz0_IjQzNTgzOTci0 "GNU AGPL v3.0")
-
-SaaS version: [http://www.onlyoffice.com](http://www.onlyoffice.com "http://www.onlyoffice.com")
-
-## ONLYOFFICE One Click Installation
-
-ONLYOFFICE Document Server is a part of **ONLYOFFICE Free Edition** that comprises also Community Server and Mail Server. To get ONLYOFFICE Free Edition in one click, make use of [ONLYOFFICE One Click Installation](https://controlpanel.onlyoffice.com/ "ONLYOFFICE One Click Installation").
-
-##Documentation
-
-The easiest way to install ONLYOFFICE Document Server is to use the Docker image. You can also install it from the repository or compiling the source code. The following documentation is available to the community depending on the way you choose:
-
-* [Compiling ONLYOFFICE Document Server for a Local Server](http://helpcenter.onlyoffice.com/server/linux/document/compile-source-code.aspx "Compiling ONLYOFFICE Document Server for a Local Server")
-* [Installing ONLYOFFICE Document Server Linux Version](https://help.onlyoffice.com/products/files/doceditor.aspx?fileid=4381391&doc=ZDdHWWYrTVJJMmpUTEVLRkNTOHhUSEplZklDQjQwQWVSajNhQ2VYamk4Zz0_IjQzODEzOTEi0 "Installing ONLYOFFICE Document Server Linux Version")
-* [Installing ONLYOFFICE Document Server Docker Version](https://help.onlyoffice.com/products/files/doceditor.aspx?fileid=4356431&doc=TTlaTDdWdHA1Ny9PRFlHQUl0cDFDTFZhdnpBUFVVQmc0b0pNRnBzRndPTT0_IjQzNTY0MzEi0 "Installing ONLYOFFICE Document Server Docker Version")
-
-## User Feedback and Support
-
-If you have any problems with or questions about this image, please contact us through a [dev.onlyoffice.org][1].
-
-  [1]: http://dev.onlyoffice.org
