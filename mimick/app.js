@@ -11,14 +11,13 @@ app.post("/PseudoOfficeResourceServer/CanvasService.ashx", jsonParser, function(
     var command = req.body.c;
     console.log("Command " + command);
     if("getsettings" == command) {
-        res.send("{\"type\":\"getsettings\",\"data\":\"{\\\"canLicense\\\":false,\\\"canEdit\\\":true,\\\"canDownload\\\":true,\\\"canCoAuthoring" +
-            "\\\":true,\\\"canReaderMode\\\":false,\\\"canAd\\\":true,\\\"canBranding\\\":true,\\\"isAutosaveEnable\\\":true,\\\"AutosaveMinInterval" +
-            "\\\":300,\\\"g_cAscCoAuthoringUrl\\\":\\\"/coauthoring\\\",\\\"g_cAscSpellCheckUrl\\\":\\\"/spellchecker\\\",\\\"isAnalyticsEnable" +
-            "\\\":false,\\\"TrackingInterval\\\":300}\"}");
+        res.send(JSON.stringify({"type":"getsettings",
+        	"data":"{\"canLicense\":false,\"canEdit\":true,\"canDownload\":true,\"canCoAuthoring\":true,\"canReaderMode\":false,\"canAd\":true,\"canBranding\":true,\"isAutosaveEnable\":true,\"AutosaveMinInterval\":300,\"g_cAscCoAuthoringUrl\":\"/coauthoring\",\"g_cAscSpellCheckUrl\":\"/spellchecker\",\"isAnalyticsEnable\":false,\"TrackingInterval\":300}"})        
+			);
     } else if("open" == command) {
-        res.send("{\"type\":\"waitopen\",\"data\":\"0\"}");
+        res.send(JSON.stringify({"type":"waitopen", "data":"0"}));
     } else if("chopen" == command) {
-        res.send("{\"type\":\"open\",\"data\":\"1562159707/Editor.bin\"}");
+        res.send(JSON.stringify({"type":"open","data":"1562159707/Editor.bin"}));
     }
 });
 
