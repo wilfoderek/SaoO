@@ -12,7 +12,20 @@ app.post("/PseudoOfficeResourceServer/CanvasService.ashx", jsonParser, function(
     console.log("Command " + command);
     if("getsettings" == command) {
         res.send(JSON.stringify({"type":"getsettings",
-        	"data":"{\"canLicense\":false,\"canEdit\":true,\"canDownload\":true,\"canCoAuthoring\":true,\"canReaderMode\":false,\"canAd\":true,\"canBranding\":true,\"isAutosaveEnable\":true,\"AutosaveMinInterval\":300,\"g_cAscCoAuthoringUrl\":\"/coauthoring\",\"g_cAscSpellCheckUrl\":\"/spellchecker\",\"isAnalyticsEnable\":false,\"TrackingInterval\":300}"})        
+        	"data":JSON.stringify({cantLicense:false, canEdit: true, canDownload:true,
+                    coAuthoring: true, canReaderMode: false,
+                    canAd: true, canBranding: true, isAutosaveEnable: true,
+                    AutoSaveMinInterval: 300,
+                    g_cAscCoAuthoringUrl: "/coauthoring",
+                    g_cAscSpellCheckUrl: "/spellchecker",
+                    isAnalyticsEnable: false,
+                    TrackingInterval: 300
+            })
+                //"{\"canLicense\":false,\"canEdit\":true,\"canDownload\":true,\"canCoAuthoring\":true," +
+                //    "\"canReaderMode\":false,\"canAd\":true,\"canBranding\":true,\"isAutosaveEnable\":true,\"" +
+                //"AutosaveMinInterval\":300,\"g_cAscCoAuthoringUrl\":\"/coauthoring\",\"" +
+                //"g_cAscSpellCheckUrl\":\"/spellchecker\",\"isAnalyticsEnable\":false,\"TrackingInterval\":300}"
+        })
 			);
     } else if("open" == command) {
         res.send(JSON.stringify({"type":"waitopen", "data":"0"}));
