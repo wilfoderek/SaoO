@@ -1,22 +1,22 @@
 ﻿/*
  * (c) Copyright Ascensio System SIA 2010-2015
  *
- * This program is a free software product. You can redistribute it and/or 
- * modify it under the terms of the GNU Affero General Public License (AGPL) 
- * version 3 as published by the Free Software Foundation. In accordance with 
- * Section 7(a) of the GNU AGPL its Section 15 shall be amended to the effect 
+ * This program is a free software product. You can redistribute it and/or
+ * modify it under the terms of the GNU Affero General Public License (AGPL)
+ * version 3 as published by the Free Software Foundation. In accordance with
+ * Section 7(a) of the GNU AGPL its Section 15 shall be amended to the effect
  * that Ascensio System SIA expressly excludes the warranty of non-infringement
  * of any third-party rights.
  *
- * This program is distributed WITHOUT ANY WARRANTY; without even the implied 
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR  PURPOSE. For 
+ * This program is distributed WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR  PURPOSE. For
  * details, see the GNU AGPL at: http://www.gnu.org/licenses/agpl-3.0.html
  *
  * You can contact Ascensio System SIA at Lubanas st. 125a-25, Riga, Latvia,
  * EU, LV-1021.
  *
  * The  interactive user interfaces in modified source and object code versions
- * of the Program must display Appropriate Legal Notices, as required under 
+ * of the Program must display Appropriate Legal Notices, as required under
  * Section 5 of the GNU AGPL version 3.
  *
  * Pursuant to Section 7(b) of the License you must retain the original Product
@@ -142,6 +142,9 @@ function ZBase32Encoder() {
         return result;
     };
     this.Encode = function (sData) {
+        // Lets simplify this a tiny bit -- cjd 2/6/2016
+        return encodeURIComponent(sData);
+
         var data = this.GetUTF8_fromUTF16(sData);
         var encodedResult = "";
         var len = data.length;
