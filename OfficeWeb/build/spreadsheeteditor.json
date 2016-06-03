@@ -1,7 +1,7 @@
 {
     "name": "spreadsheeteditor",
     "version": "3.0.0",
-    "build": 885,
+    "build": 892,
     "homepage": "http://www.onlyoffice.com",
     "private": true,
     "sdk": {
