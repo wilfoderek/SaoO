@@ -15,7 +15,7 @@ var FONT_OBFUSCATION_MAGIC = new Buffer([
 
 
 var FONT_NAME_MAP = {};
-[ '/Users/user/onlyoffice-fonts/' ].forEach(function (path) {
+[ './fonts/' ].forEach(function (path) {
     Fs.readdir(path, function (err, list) {
         if (err) { throw err; }
         list.forEach(function (fontName) {
@@ -26,6 +26,7 @@ var FONT_NAME_MAP = {};
 
 app.use("/OfficeWeb/sdk/Fonts/odttf/:name", function (req, res) {
     var name = req.params.name.replace(/\.js$/, '').toLowerCase();
+    console.log(name);
     if (!FONT_NAME_MAP[name]) {
         console.log(name);
         console.log(FONT_NAME_MAP[name]);
@@ -88,7 +89,7 @@ app.post("/CanvasService.ashx", jsonParser, function(req, res) { // jsonParser
 app.get("/ResourceService.ashx", function(req,res) {
     var path = req.query.path;
     if (path.indexOf('..')>0) res.sendError("No path climbing!");
-    res.sendFile(path, {root: 'mimick/static', dotfiles: 'deny'}, function(err) {
+    res.sendFile(path, {root: 'static', dotfiles: 'deny'}, function(err) {
         if(err) {
             console.warn(err);
             res.status(err.status).end();

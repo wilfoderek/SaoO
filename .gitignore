@@ -1,4 +1,7 @@
 .DS_Store
 .idea
 node_modules
-
+OfficeWeb/deploy/
+OfficeWeb/sdk/Excel/sdk-all.js
+OfficeWeb/sdk/PowerPoint/sdk-all.js
+OfficeWeb/sdk/Word/sdk-all.js
