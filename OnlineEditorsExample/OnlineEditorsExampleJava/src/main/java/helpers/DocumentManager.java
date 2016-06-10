@@ -100,7 +100,7 @@ public class DocumentManager
         String storagePath = ConfigManager.GetProperty("storage-folder");
         String hostAddress = CurUserHostAddress(userAddress);
         
-        String directory = serverPath + "\\" + storagePath + "\\";
+        String directory = serverPath + File.separator + storagePath + File.separator;
 
         File file = new File(directory);
         
@@ -109,7 +109,7 @@ public class DocumentManager
             file.mkdir();
         }
         
-        directory = directory + hostAddress + "\\";
+        directory = directory + hostAddress + File.separator;
         file = new File(directory);
 
         if (!file.exists())
@@ -173,7 +173,7 @@ public class DocumentManager
             String storagePath = ConfigManager.GetProperty("storage-folder");
             String hostAddress = CurUserHostAddress(null);
             
-            String filePath = serverPath + "/" + storagePath + "/" + hostAddress + "/" + URLEncoder.encode(fileName);
+            String filePath = serverPath + "/" + storagePath + "/" + hostAddress + "/" + URLEncoder.encode(fileName).replaceAll("\\+","%20");
             
             if (HaveExternalIP(filePath))
             {
@@ -229,7 +229,6 @@ public class DocumentManager
     public static String GetExternalUri(String localUri) throws Exception
     {
         String documentRevisionId = ServiceConverter.GenerateRevisionId(localUri);
-        
         if(CacheMap.containsKey(documentRevisionId))
             return CacheMap.get(documentRevisionId);
         
