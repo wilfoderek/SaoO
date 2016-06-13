@@ -16,7 +16,8 @@ Progressively, the source will be more used and the running instance will not be
 * type `./do` in the shell
 * Direct your browser to [`http://localhost:9006/`](http://localhost:9006/)
 
-## Areas of investigations
+## Arguments to `./do`
 
-* Something that produces `Editor.bin` ? (seems open as per [this thread](http://dev.onlyoffice.org/viewtopic.php?f=44&t=6859)).
-  Investigations thus far seem to show me that the file is almost produced through proprietary code.
+* `--apponly` if you have only made changes in the OfficeWeb/apps directory
+* `--sdkonly` if you have only made changes in the OfficeWeb/sdk directory
+* `--fast` try to make the build faster (makes speed of SDK build way way faster)
