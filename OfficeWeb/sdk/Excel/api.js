@@ -474,6 +474,28 @@ var ASC_DOCS_API_USE_EMBEDDED_FONTS = "@@ASC_DOCS_API_USE_EMBEDDED_FONTS";
         },
         true);
     };
+
+
+    spreadsheet_api.prototype.asc_PrepareDownload = function () {
+        this.sync_StartAction(c_oAscAsyncActionType.BlockInteraction, c_oAscAsyncAction.DownloadAs);
+        var editor = this;
+        var formatNumber = 0, upperCaseFormat = editor.DocInfo.Format.toUpperCase();
+        for(var k in c_oAscFileType) { if(k==upperCaseFormat) formatNumber = c_oAscFileType[k]; };
+        _asc_downloadAs(this, formatNumber,
+            function (incomeObject) {
+                if (null != incomeObject && "save" == incomeObject["type"]) {
+                    editor.processSavedFile(incomeObject["data"], true);
+                }
+                editor.sync_EndAction(c_oAscAsyncActionType.BlockInteraction, c_oAscAsyncAction.DownloadAs);
+            }, true);
+    };
+
+    spreadsheet_api.prototype.asc_OnSaveEnd = function() {
+        if(console && console.log) console.log("OnSaveEnd");
+    };
+
+
+
     spreadsheet_api.prototype.asc_Save = function (isAutoSave) {
         if (!this.canSave || this.isChartEditor || c_oAscAdvancedOptionsAction.None !== this.advancedOptionsAction || this.waitSave) {
             return;

@@ -42,6 +42,13 @@ Common.Gateway = new(function () {
         "openDocument": function (data) {
             $me.trigger("opendocument", data);
         },
+        "prepareDownload": function(x){
+            if(editor) {
+                editor.asc_PrepareDownload();
+            }  else {
+                window.alert('would call prepareDownload ' + x + " but no editor is there.")
+            }
+        },
         "showMessage": function (data) {
             $me.trigger("showmessage", data);
         },

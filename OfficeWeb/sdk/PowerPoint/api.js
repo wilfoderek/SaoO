@@ -1197,6 +1197,24 @@ asc_docs_api.prototype.asc_DownloadAs = function (typeFile) {
     },
     true);
 };
+
+asc_docs_api.prototype.asc_PrepareDownload = function () {
+    this.sync_StartAction(c_oAscAsyncActionType.BlockInteraction, c_oAscAsyncAction.DownloadAs);
+    var editor = this;
+    var formatNumber = 0, upperCaseFormat = editor.DocInfo.Format.toUpperCase();
+    for(var k in c_oAscFileType) { if(k==upperCaseFormat) formatNumber = c_oAscFileType[k]; };
+    _downloadAs(this, formatNumber,
+        function (incomeObject) {
+            if (null != incomeObject && "save" == incomeObject["type"]) {
+                editor.processSavedFile(incomeObject["data"], true);
+            }
+            editor.sync_EndAction(c_oAscAsyncActionType.BlockInteraction, c_oAscAsyncAction.DownloadAs);
+        }, true);
+};
+
+asc_docs_api.prototype.asc_OnSaveEnd = function() {
+    if(console && console.log) console.log("OnSaveEnd");
+};
 asc_docs_api.prototype.Resize = function () {
     if (false === this.bInit_word_control) {
         return;
